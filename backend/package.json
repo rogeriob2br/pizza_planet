@@ -39,6 +39,8 @@
     "jsonwebtoken": "^7.4.1",
     "moment": "^2.18.1",
     "morgan": "^1.7.0",
+    "mongodb": "2.1.16",
+    "mongoose": "4.4.12",
     "mysql": "^2.13.0"
   }
 }
