@@ -1,14 +1,18 @@
-export interface Client {
-    name: string,
-    cpf: string,
-    phone1: string,
-    phone2: string,
+import { Schema, model } from "mongoose";
+
+export const ClientSchema: Schema = new Schema( {
+    name: String,
+    cpf: String,
+    phone1: String,
+
+    phone2: String,
     address: {
-        place: string,
-        city: string,
-        zipCode: string,
-        number: number,
-        neighborhood: string,
-        info: string
+        place: String,
+        city: String,
+        zipCode: String,
+        number: Number,
+        neighborhood: String,
+        info: String
     }
-}
+});
+export default  model('Client', ClientSchema);

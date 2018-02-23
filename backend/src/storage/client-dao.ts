@@ -1,62 +1,40 @@
-import {Storage} from "./storage";
-import {Client} from "../model/client.model";
+// import {Storage} from "./storage";
+// import {Client} from "../model/client.model";
+import mongoose = require('mongoose');
+import { Document, Schema, Model, model} from "mongoose";
+import {Client} from "../Schema/client";
+import { IClient } from "../MongoDB/IClient";
+
 
 export class ClientDao {
 
-    public static save(client: Client): Promise<any> {
-        let sql: string = `INSERT INTO CLIENTS (
-                CPF, 
-                NAME, 
-                TELEPHONE, 
-                CELLPHONE, 
-                ADDRESS, 
-                NEIGHBORHOOD, 
-                CITY, 
-                ZIPCODE, 
-                NUMBER, 
-                INFO) 
-            VALUES (
-                '${client.cpf}', 
-                '${client.name}', 
-                '${client.phone1}', 
-                '${client.phone2}', 
-                '${client.address.place}', 
-                '${client.address.neighborhood}', 
-                '${client.address.city}', 
-                '${client.address.zipCode}', 
-                ${client.address.number}, 
-                ${client.address.info ? "'" + client.address.info + "'" : 'NULL'})`;
-
-        return Storage.executeSql(sql);
+    public static save(client: IClient) {
+        Client.save(function(err) {
+                // we've updated the dog into the db here
+                if (err) throw err;
+        })
     }
 
-    public static update(client: Client): Promise<any> {
-        let sql: string = `UPDATE CLIENTS SET
-                NAME = '${client.name}', 
-                TELEPHONE = '${client.phone1}', 
-                CELLPHONE = '${client.phone2}', 
-                ADDRESS = '${client.address.place}', 
-                NEIGHBORHOOD = '${client.address.neighborhood}', 
-                CITY = '${client.address.city}', 
-                ZIPCODE = '${client.address.zipCode}',
-                NUMBER = ${client.address.number}, 
-                INFO = ${client.address.info ? "'" + client.address.info + "'" : 'NULL'} 
-            WHERE CPF = '${client.cpf}'`;
+    public static update(client: IClient) {
+        var query = { phone1: client.phone1 };  
+        Client.findbyIdAndUpdate(client._id, client,function(err){
+            if (err) throw err;
+        });
 
-        return Storage.executeSql(sql);
     }
 
-    public static getAll(): Promise<Client[]> {
+    public static getAll(): Promise<IClient[]> {
         return ClientDao.getClients();
     }
 
-    public static get(cpf: string): Promise<Client> {
-        return ClientDao.getClients(cpf).then((clients: Client[]) => {
-            return clients[0];
-        });
+    public static get(tel: string): Promise<IClient> {
+        Client.findOne({phone1: tel})
+            .then((data)) =>{
+                
+            }
     }
 
-    private static getClients(cpf?: string): Promise<Client[]> {
+    private static getClients(tel?: string): Promise<IClient[]> {
         return new Promise((resolve, reject) => {
             let sql: string = `SELECT * FROM CLIENTS`;
 
