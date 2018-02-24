@@ -1,6 +1,6 @@
 import {Request, Response, Router} from "express";
 import OrderModel from "../model/order.model";
-
+import ClientModel from "../model/client.model";
 export class OrderRouter {
 
     router: Router;
@@ -19,42 +19,65 @@ export class OrderRouter {
     }
 
     private static getAll(request: Request, response: Response) {
-        new OrderDao().getAll().then((orders: Order[]) => {
-            for (let order of orders) {
-                order.totalPrice = OrderRouter.getTotalPrice(order);
-            }
-
-            response.status(200).send(orders)
-        }).catch((error) => {
-            response.status(500).send({
-                message: error.message
+        OrderModel.find({})
+            .then((data) =>{
+                if(!data){
+                    response.status(404).send({
+                        data: new Error('Não há Pedidos realizados')
+                    });
+                }else{
+                    response.status(200).send({
+                        data
+                    })
+                }
+                
             })
-        })
+            .catch((err) =>{
+                console.log(err);
+                response.status(500).send({
+                    data: new Error('Ocorreu um erro no sistema')
+                });
+            })
     }
 
     private static getOne(request: Request, response: Response) {
         let orderId: number = parseInt(request.params.id);
 
-        new OrderDao().get(orderId).then((order: Order) => {
-            if (order) {
-                order.totalPrice = OrderRouter.getTotalPrice(order);
-                response.status(200).send(order)
-            } else {
-                response.status(404).send('No order found by the given id');
-            }
-        }).catch((error) => {
-            response.status(500).send({
-                message: error.message
+        OrderModel.findOne(orderId)
+            .then((data) =>{
+                if(!data){
+                    response.status(404).send({
+                        data: new Error('O Pedido não foi cadastrado')
+                    });
+                }else{
+                    response.status(200).send({
+                        data
+                    });
+                }
             })
-        })
+            .cath((err) =>{
+                response.status(500).send({
+                    data: new Error('Ocorreu um erro no sistema')
+                });
+            });
     }
 
     private static save(request: Request, response: Response) {
-        let order: Order = request.body;
+        let params = request.body;
+        let order= new OrderModel({
+            date: params.date,
+            status: params.status,
+            client: params.client,
+            products: params.products,
+            totalPrice: params.totalPrice
 
-        OrderDao.save(order).then(() => {
-            response.status(200)
-                .send(order)
+        })
+
+        order.save()
+        .then((data) => {
+            response.status(200).send({
+                data
+            })
         }).catch((error) => {
             response.status(500).send({
                 message: error.message
@@ -73,7 +96,7 @@ export class OrderRouter {
     private static changeStatus(request: Request, response: Response, status: string) {
         let orderId: number = parseInt(request.params.id);
 
-        OrderDao.setStatus(orderId, status).then(() => {
+        OrderModel.setStatus(orderId, status).then(() => {
             response.status(200)
                 .send(status)
         }).catch((error) => {

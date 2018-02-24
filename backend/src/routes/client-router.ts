@@ -61,8 +61,6 @@ export class ClientRouter {
                 });
             });
 
-
-
     }
 
     private static save(request: Request, response: Response) {

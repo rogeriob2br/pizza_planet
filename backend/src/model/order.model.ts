@@ -3,7 +3,7 @@ import ClientModel from "./client.model";
 import ProductModel from "./product.model";
 
 export const OrderSchema: Schema = new Schema(  {
-    _id: Number,
+    id: Number,
     date: String,
     status: String,
     client: ClientModel,
