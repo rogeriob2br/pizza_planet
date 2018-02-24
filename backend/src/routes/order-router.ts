@@ -1,6 +1,5 @@
 import {Request, Response, Router} from "express";
-import {OrderDao} from "../storage/order-dao";
-import {Order} from "../model/order.model";
+import OrderModel from "../model/order.model";
 
 export class OrderRouter {
 

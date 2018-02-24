@@ -1,14 +1,16 @@
-import {Client} from "./client.model";
-import {Product} from "./product.model";
+import { Schema, model } from "mongoose";
+import ClientModel from "./client.model";
+import ProductModel from "./product.model";
 
-export interface Order {
-    id: number,
-    date: string,
-    status: string,
-    client: Client,
+export const OrderSchema: Schema = new Schema(  {
+    _id: Number,
+    date: String,
+    status: String,
+    client: ClientModel,
     products: {
-        product: Product,
-        amount: number
+        product: ProductModel,
+        amount: Number
     }[],
-    totalPrice: number
-}
+    totalPrice: Number
+});
+export default  model('Order', OrderSchema);

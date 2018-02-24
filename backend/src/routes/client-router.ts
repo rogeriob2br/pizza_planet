@@ -1,5 +1,4 @@
 import {Router, Request, Response, NextFunction} from "express";
-import {ClientDao} from "../storage/client-dao";
 import ClientModel from "../model/client.model";
 
 export class ClientRouter {
@@ -96,16 +95,20 @@ export class ClientRouter {
     }
 
     private static update(request: Request, response: Response) {
-        let client: Client = request.body;
+        let params = request.body;
+        let clientid = request.params.id;
+        let options = {new: true}
 
-        ClientDao.update(client).then(() => {
-            response.status(200)
-                .send(client)
-        }).catch((error) => {
-            response.status(500).send({
-                message: error.message
+        ClientModel.findByIdAndUpdate({_id: clientid, params, options})
+            .then((data) => {
+                response.status(200).send({
+                    data
+                });
+            }).catch((error) => {
+                response.status(500).send({
+                    message: error.message
+                })
             })
-        })
     }
 
 }

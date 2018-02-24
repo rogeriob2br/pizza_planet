@@ -1,6 +1,5 @@
 import {Request, Response, Router} from "express";
-import {ProductDao} from "../storage/product-dao";
-import {Product} from "../model/product.model";
+import ProductModel from "../model/product.model";
 
 export class ProductRouter {
 
@@ -19,47 +18,85 @@ export class ProductRouter {
     }
 
     private static getAll(request: Request, response: Response) {
-        ProductDao.getAll().then((products: Product[]) => {
-            response.status(200)
-                .send(products)
-        }).catch((error) => {
-            response.status(500).send({
-                message: error.message
-            })
+        ProductModel.find({})
+        .then((data) =>{
+            if(!data){
+                response.status(404).send({
+                    data: new Error('Não há Produtos cadastrados')
+                });
+            }else{
+                response.status(200).send({
+                    data
+                })
+            }
+
         })
+        .catch((err) =>{
+            console.log(err);
+            response.status(500).send({
+                data: new Error('Ocorreu um erro no sistema')
+            });
+        });
+    
     }
 
     private static getOne(request: Request, response: Response) {
-        let productId: number = parseInt(request.params.id);
+        let productId: number = parseInt(request.params._id);
+  
 
-        ProductDao.get(productId).then((product: Product) => {
-            if (product) {
-                response.status(200).send(product);
-            } else {
-                response.status(404).send('No product found by the given id');
-            }
-        }).catch((error) => {
-            response.status(500).send({
-                message: error.message
+        ProductModel.findOne(productId)
+            .then((data) =>{
+                if(!data){
+                    response.status(404).send({
+                        data: new Error('Produto não foi cadastrado')
+                    });
+                }else{
+                    response.status(200).send({
+                        data
+                    });
+                }
             })
-        })
+            .cath((err) =>{
+                response.status(500).send({
+                    data: new Error('Ocorreu um erro no sistema')
+                });
+            });
+
     }
 
     private static save(request: Request, response: Response) {
-        ProductDao.save(request.body).then(() => {
-            response.status(200)
-                .send(request.body)
-        }).catch((error) => {
-            response.status(500).send({
-                message: error.message
-            })
-        })
-    }
+        let params = request.body;
+
+        let product = new ProductModel({
+            _id: params.id,
+            name: params.name,
+            price: params.price
+            
+        });
+
+        product.save()
+            .then((data) => {
+                response.status(200).send({
+                    data
+                });
+            }).catch((error) => {
+                response.status(500).send({
+                    message: error.message
+                });
+            });
+}
 
     private static edit(request: Request, response: Response) {
-        ProductDao.edit(request.body).then(() => {
-            response.status(200)
-                .send(request.body)
+        let params = request.body;
+        let productid = request.params.id;
+        let options = {new: true}
+        
+        
+        ProductModel.findByIdAndUpdate({_id: productid, params, options})
+        .then((data) => {
+            response.status(200).send({
+                data
+            });
         }).catch((error) => {
             response.status(500).send({
                 message: error.message
