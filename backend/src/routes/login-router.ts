@@ -1,5 +1,5 @@
 import {Request, Response, Router} from "express";
-import {User} from "../model/user.model";
+import UserModel from "../model/user.model";
 import {UserDao} from "../storage/user-dao";
 import {IError} from "mysql";
 let jwt = require('jsonwebtoken');
@@ -26,7 +26,7 @@ export class LoginRouter {
         let username: string = request.body.username;
         let password: string = request.body.password;
 
-        UserDao.get(username, password).then((user: User) => {
+        UserModel.findOne(username, password).then((user: UserModel) => {
             if (user) {
                 response.status(200)
                     .send({

@@ -96,7 +96,14 @@ export class OrderRouter {
     private static changeStatus(request: Request, response: Response, status: string) {
         let orderId: number = parseInt(request.params.id);
 
-        OrderModel.setStatus(orderId, status).then(() => {
+        OrderModel.findOne(orderId, function (err, OrderModel ) {
+            if(err){
+                return err;
+            }else{
+                OrderModel.status = status;
+                OrderModel.save();
+            }
+        }).then(() => {
             response.status(200)
                 .send(status)
         }).catch((error) => {
@@ -105,15 +112,30 @@ export class OrderRouter {
             })
         })
     }
+    // ======================
+    // private static getTotalPrice(request: Request, response: Response): number {
+    //     let orderId: number = parseInt(request.params.id);
+    //     let total: number;
+        
+    //             OrderModel.findOne(orderId, function (err, OrderModel ) {
+    //                 if(err){
+    //                     response.status(404).send({err})
+    //                 }else{
+                        
+    //                     total = OrderModel.totalPrice;
+    //                     return total
 
-    private static getTotalPrice(order: Order): number {
-        let totalPrice: number = 0;
-        for (let orderProduct of order.products) {
-            totalPrice += orderProduct.product.price * orderProduct.amount;
-        }
+    //                 }
+    //             }).then(() => {
+    //                 response.status(200)
+    //                     .send(status)
+    //             }).catch((error) => {
+    //                 response.status(500).send({
+    //                     message: error.message
+    //                 })
+    //             })
 
-        return totalPrice;
-    }
+    // }
 
 }
 
