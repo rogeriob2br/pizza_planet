@@ -26,20 +26,26 @@ export class LoginRouter {
         let username: string = request.body.username;
         let password: string = request.body.password;
 
-        UserModel.findOne(username, password).then((user: UserModel) => {
-            if (user) {
-                response.status(200)
-                    .send({
-                        token: jwt.sign(user, 'ITATAKARU', {expiresIn: 1800})
-                    });
-            } else {
-                response.status(401).send();
-            }
-        }).catch((error: IError) => {
-            response.status(500).send({
-                message: error.message
-            })
-        });
+        UserModel.findOne(username)
+            .then((data) => {
+                if (data) {
+                    if(data.password == password){
+                        response.status(200)
+                        .send({
+                            token: jwt.sign(data, 'PISZZAPLANET', {expiresIn: 1800})
+                        });
+                    }else{
+                        response.status(401).send();
+                    }
+                    
+                } else {
+                    response.status(401).send();
+                }
+            }).catch((error: IError) => {
+                response.status(500).send({
+                    message: error.message
+                })
+            });
     }
 }
 
