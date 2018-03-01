@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
 
 export const ClientSchema: Schema = new Schema( {
+    _id: Schema.Types.ObjectId,
     name: String,
     cpf: String,
     phone1: String,

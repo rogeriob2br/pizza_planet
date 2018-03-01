@@ -1,7 +1,5 @@
 import {Request, Response, Router} from "express";
 import UserModel from "../model/user.model";
-import {UserDao} from "../storage/user-dao";
-import {IError} from "mysql";
 let jwt = require('jsonwebtoken');
 
 export interface Login {
@@ -41,7 +39,7 @@ export class LoginRouter {
                 } else {
                     response.status(401).send();
                 }
-            }).catch((error: IError) => {
+            }).catch((error) => {
                 response.status(500).send({
                     message: error.message
                 })

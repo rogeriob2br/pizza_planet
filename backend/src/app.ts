@@ -63,7 +63,7 @@ class App {
         let authMiddleware = express.Router();
 
         authMiddleware.use((req, res, next) => {
-            let token: string = req.headers['authorization'];
+            let token = req.headers['authorization'];
             if (token) {
                 jwt.verify(token, 'ITATAKARU', function (err, decoded) {
                     if (err) {
