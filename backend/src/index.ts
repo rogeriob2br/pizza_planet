@@ -1,6 +1,6 @@
 import * as http from 'http';
 import * as debug from 'debug';
-import { mongoConfig } from './config';
+require('dotenv').config();
 import App from './app';
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -12,13 +12,15 @@ App.set('port', port);
 
 const server = http.createServer(App);
 
-const mongoUri = 'mongodb://' +
-  mongoConfig.user + (mongoConfig.pass ? ':' + mongoConfig.pass : '') +
-  '@' + mongoConfig.host + ':' + mongoConfig.port + '/' + mongoConfig.db +
-  (mongoConfig.authMechanism ? '?authMechanism=' + mongoConfig.authMechanism : '');
+const mongoUri = "mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASS +"@"+ process.env.DB_HOST + ":"+ process.env.DB_PORT + "/" + process.env.DB_DATABASE;
+
+// console.log("mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASS +"@"+ process.env.DB_HOST + ":"+ process.env.DB_PORT + "/" + process.env.DB_DATABASE);
+
 const mongoOptions = {
   useMongoClient: true
 };
+mongoose.set ('debug', true) 
+
 mongoose.connect(mongoUri, mongoOptions)
 .then(() => {
   console.log('Succesfully connected with MongoDB.');
@@ -31,6 +33,7 @@ mongoose.connect(mongoUri, mongoOptions)
 .catch((err) => {
   console.log('Not able to connect with MongoDB:', err)
 });
+
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

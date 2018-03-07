@@ -33,14 +33,15 @@
     "@types/mysql": "0.0.33",
     "body-parser": "^1.15.2",
     "debug": "^2.2.0",
+    "dotenv": "^5.0.1",
     "express": "^4.14.0",
     "express-myconnection": "^1.0.4",
     "fs": "0.0.1-security",
     "jsonwebtoken": "^7.4.1",
     "moment": "^2.18.1",
-    "morgan": "^1.7.0",
     "mongodb": "2.1.16",
     "mongoose": "4.4.12",
+    "morgan": "^1.7.0",
     "mysql": "^2.13.0"
   }
 }

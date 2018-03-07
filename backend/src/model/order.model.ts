@@ -8,20 +8,17 @@ export const OrderSchema: Schema = new Schema(  {
     status: String,
     client: {
         type: Schema.ObjectId,
-        ref: 'Client',
-        required: true 
+        ref: 'Client'
      },
     products: [{
         product:  {
             type: Schema.ObjectId,
-            ref: 'Client',
-            required: true
+            ref: 'Product'
          },
         amount: {
             type: Number , 
-            required: true 
-        },
-        required: true 
+            
+        }
     }],
     totalPrice: Number
 });

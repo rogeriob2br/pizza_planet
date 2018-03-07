@@ -70,8 +70,8 @@ export class ProductRouter {
         let product = new ProductModel({
             _id: params.id,
             name: params.name,
-            price: params.price
-            
+            price: params.price,
+            ingredientes: params.ingredientes
         });
 
         product.save()
