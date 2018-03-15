@@ -5,8 +5,15 @@ import {Http, RequestOptions, Headers} from "@angular/http";
 
 export interface Product {
     id: number,
-    name: string,
-    price: number
+    combo: Number,
+    categoria: String,
+    name: String,
+    price: Number,
+    ingredientes: [{
+        ingrediente: {
+            Types: String    
+        }
+    }]
 }
 
 @Injectable()

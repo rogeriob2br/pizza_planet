@@ -53,6 +53,9 @@ export class ProductComponent {
     this.currentProduct.id = prod.id;
     this.currentProduct.name = prod.name;
     this.currentProduct.price = prod.price;
+    this.currentProduct.combo = prod.combo;
+    this.currentProduct.categoria = prod.categoria;
+    this.currentProduct.ingredientes = prod.ingredientes;
     this.show();
   }
 

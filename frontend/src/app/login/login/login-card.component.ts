@@ -18,6 +18,7 @@ export class LoginCardComponent {
     public login() {
         this.user.login(this.username, this.password).subscribe(
             (login: Login) => {
+               
                 localStorage.setItem('ITATAKARU', login.token);
                 location.assign('/');
             }, () => {

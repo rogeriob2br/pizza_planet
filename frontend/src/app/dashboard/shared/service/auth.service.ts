@@ -23,6 +23,7 @@ export class AuthService {
             .map(response => response.json() as Login)
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
+    
 
     private getHeaders(): RequestOptions {
         let options = new RequestOptions();

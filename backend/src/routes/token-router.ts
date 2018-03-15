@@ -16,14 +16,43 @@ export class TokenRouter {
 
     private static validateToken(request: Request, response: Response) {
         try {
-            jwt.verify(request.params.token, 'ITATAKARU');
+            // verify a token symmetric - synchronous
+            // var token = jwt.verify(request.params.token, 'ITATAKARU');
+            // console.log(token) // bar
+            // verify a token symmetric
 
-            response.status(200)
-                .send({
-                    status: response.status,
-                    logged: true
-                });
+            jwt.verify(request.params.token, 'ITATAKARU', function(err, decoded) {
+                // console.log(decoded) // bar
+                var decoded = jwt.decode(request.params.token, {complete: true});
+                // get the decoded payload and header
+                var current_time = Date.now() / 1000;
+                if ( decoded.exp < current_time) {
+                 /* expired */  
+                 console.log('Expirado');
+                    response.status(200)
+                        .send({
+                            
+                            status: response.status,
+                            logged: false
+                    });
+                }else{
+                    response.status(200)
+                    .send({
+                        status: response.status,
+                        logged: true
+                    });
+
+                }
+
+                console.log(decoded.header);
+                console.log(decoded.payload);
+            });
+
+            // jwt.verify(request.params.token, 'ITATAKARU');
+
+            
         } catch (err) {
+            console.log(err);
             response.status(200)
                 .send({
                     status: response.status,

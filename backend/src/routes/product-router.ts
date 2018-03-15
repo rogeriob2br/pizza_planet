@@ -71,8 +71,10 @@ export class ProductRouter {
             _id: params.id,
             name: params.name,
             price: params.price,
-            ingredientes: params.ingredientes
-        });
+            ingredientes: params.ingredientes,
+            combo: params.combo,
+            categoria: params.categoria
+        }); 
 
         product.save()
             .then((data) => {

@@ -58,12 +58,28 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-1 align-right">
+                                <span class="bold">Categoria</span>
+                            </div>
+                            <div class="col-11">
+                                <input class="inputs" type="text" name="name" maxlength="50" [(ngModel)]="currentProduct.categoria" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-1 align-right">
+                                    <span class="bold">Combo</span>
+                                </div>
+                                <div class="col-11">
+                                    <input class="inputs" type="text" name="name" maxlength="50" [(ngModel)]="currentProduct.name" required>
+                                </div>
+                        </div> 
+                        <div class="row">
+                            <div class="col-1 align-right">
                                 <span class="bold">Nome</span>
                             </div>
                             <div class="col-11">
                                 <input class="inputs" type="text" name="name" maxlength="50" [(ngModel)]="currentProduct.name" required>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="row">
                             <div class="col-1 align-right">
                                 <span class="bold">Preço</span>

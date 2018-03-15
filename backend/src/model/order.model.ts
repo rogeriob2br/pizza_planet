@@ -6,6 +6,10 @@ export const OrderSchema: Schema = new Schema(  {
     _id: Schema.Types.ObjectId,
     date: String,
     status: String,
+    origem:String,
+    mesa: Number,
+    qtdPessoas: Number,
+    pagamento: String,
     client: {
         type: Schema.ObjectId,
         ref: 'Client'
