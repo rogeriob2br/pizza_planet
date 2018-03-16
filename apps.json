@@ -1,0 +1,12 @@
+{
+    "apps": [
+      {
+        "name": "backend",
+        "script": "npm start ./backend/index.js"
+      },
+      {
+        "name": "frontend",
+        "script": "npm start ./frontend/index.js"      
+      }
+    ]
+  }
