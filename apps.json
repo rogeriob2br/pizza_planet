@@ -2,11 +2,11 @@
     "apps": [
       {
         "name": "backend",
-        "script": "npm start ./backend/index.js"
+        "script": "npm start ./backend/dist"
       },
-      {
+      { 
         "name": "frontend",
-        "script": "npm start ./frontend/index.js"      
+        "script": "npm start ./frontend/dist"      
       }
     ]
   }
