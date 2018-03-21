@@ -1,12 +1,16 @@
 {
-    "apps": [
-      {
-        "name": "backend",
-        "script": "npm start ./backend/dist"
-      },
-      { 
-        "name": "frontend",
-        "script": "npm start ./frontend/dist"      
-      }
-    ]
-  }
+  "apps": [
+    {
+      "name": "backend",
+      "script": "npm",
+      "args": "start",
+      "cwd": "backend"
+    },
+    { 
+      "name": "frontend",
+      "script": "npm",
+      "args": "start",
+      "cwd": "frontend"
+    }
+  ]
+}
