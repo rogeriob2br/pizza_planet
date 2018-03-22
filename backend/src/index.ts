@@ -63,7 +63,8 @@ function onError(error:NodeJS.ErrnoException):void {
 }
 
 function onListening():void {
-    let addr = server.address().address;
+    // let addr = server.address().address;
+    let addr = '127.0.0.1';
     let p = server.address().address;
     let bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${p}`;
     debug(`Listening on ${bind}`);
