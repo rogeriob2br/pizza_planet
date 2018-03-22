@@ -67,5 +67,6 @@ function onListening():void {
     let addr = '127.0.0.1';
     let p = server.address().address;
     let bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${p}`;
+    console.log(bind)
     debug(`Listening on ${bind}`);
 }
