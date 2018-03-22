@@ -24,7 +24,10 @@ mongoose.set ('debug', true)
 mongoose.connect(mongoUri, mongoOptions)
 .then(() => {
   console.log('Succesfully connected with MongoDB.');
-    server.listen(port);
+    server.listen({
+        port: port,
+        hostname:"127.0.0.1"
+    });
     server.on('error', onError);
     server.on('listening', onListening);
 })
