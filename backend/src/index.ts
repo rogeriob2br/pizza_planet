@@ -24,19 +24,15 @@ mongoose.set ('debug', true)
 mongoose.connect(mongoUri, mongoOptions)
 .then(() => {
   console.log('Succesfully connected with MongoDB.');
-  server.listen(port, () => {
-    let addr = server.address();
-    let bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
-    console.log(`Listening on ${bind}`);
-  });
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
 })
 .catch((err) => {
   console.log('Not able to connect with MongoDB:', err)
 });
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+
 
 function normalizePort(val:number|string):number|string|boolean {
     let port:number = (typeof val === 'string') ? parseInt(val, 10) : val;
