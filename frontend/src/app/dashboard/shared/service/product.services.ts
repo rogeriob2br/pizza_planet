@@ -22,18 +22,18 @@ export class ProductService {
     }
 
     public getProducts(): Observable<Product[]> {
-        return this.http.get('http://localhost:3000/api/product/', this.getHeaders())
+        return this.http.get('http://35.203.100.140:3000/api/product/', this.getHeaders())
                 .map((res:Response) => res.json())
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     public salvar(prod:Product): Observable<any>{
-        return this.http.post('http://localhost:3000/api/product/', prod , this.getHeaders())
+        return this.http.post('http://35.203.100.140:3000/api/product/', prod , this.getHeaders())
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     public editar(prod:Product): Observable<any>{
-        return this.http.put('http://localhost:3000/api/product/', prod , this.getHeaders())
+        return this.http.put('http://35.203.100.140:3000/api/product/', prod , this.getHeaders())
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 

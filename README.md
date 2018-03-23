@@ -33,7 +33,7 @@ This a sample pizzeria management system made with [Node](https://nodejs.org) ([
 1. `npm start`
 1. `npm run watch` for watch source changes
 
-Runs on localhost:3000
+Runs on 35.203.100.140:3000
 
 ### Frontend
 

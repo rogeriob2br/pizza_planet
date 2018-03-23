@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     checkLogin(url: string): Observable<boolean> {
         if(localStorage.getItem('ITATAKARU')){
             console.log(localStorage.getItem('ITATAKARU'))
-            return this.http.get('http://localhost:3000/api/token/validate/'+ localStorage.getItem('ITATAKARU'), this.getHeaders())
+            return this.http.get('http://35.203.100.140:3000/api/token/validate/'+ localStorage.getItem('ITATAKARU'), this.getHeaders())
                 .map((res:Response) => {
                     console.log(res.json())
                     var logged: boolean = res.json().logged;

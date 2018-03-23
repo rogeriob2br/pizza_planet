@@ -25,18 +25,18 @@ export class ClientService {
     }
 
     public getClients(): Observable<Client[]> {
-        return this.http.get('http://localhost:3000/api/client/', this.getHeaders())
+        return this.http.get('http://35.203.100.140:3000/api/client/', this.getHeaders())
                 .map((res:Response) => res.json())
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     public salvar(cli:Client): Observable<any>{
-        return this.http.post('http://localhost:3000/api/client/', cli , this.getHeaders())
+        return this.http.post('http://35.203.100.140:3000/api/client/', cli , this.getHeaders())
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     public editar(cli:Client): Observable<any>{
-        return this.http.put('http://localhost:3000/api/client/', cli , this.getHeaders())
+        return this.http.put('http://35.203.100.140:3000/api/client/', cli , this.getHeaders())
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 

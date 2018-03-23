@@ -39,13 +39,13 @@ export class OrderService {
     }
 
     public getOrders(): Observable<Order[]> {
-        return this.http.get('http://localhost:3000/api/order/', this.getHeaders())
+        return this.http.get('http://35.203.100.140:3000/api/order/', this.getHeaders())
                 .map((res:Response) => res.json())
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     public getOrder(id:number): Observable<Order> {
-        return this.http.get('http://localhost:3000/api/order/' + id, this.getHeaders())
+        return this.http.get('http://35.203.100.140:3000/api/order/' + id, this.getHeaders())
                 .map((res:Response) => res.json())
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
@@ -67,12 +67,12 @@ export class OrderService {
     }
 
     public cancelar(id: number): Observable<any>{
-        return this.http.post('http://localhost:3000/api/order/cancel/' + id, {}, this.getHeaders())
+        return this.http.post('http://35.203.100.140:3000/api/order/cancel/' + id, {}, this.getHeaders())
                 .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     public confirmar(id: number): Observable<any>{
-        return this.http.post('http://localhost:3000/api/order/complete/' + id, {}, this.getHeaders()) // ...using post request
+        return this.http.post('http://35.203.100.140:3000/api/order/complete/' + id, {}, this.getHeaders()) // ...using post request
                 .catch((error:any) => Observable.throw(error.json().error || 'Server error')) //...errors if any; 
     } 
 
@@ -98,7 +98,7 @@ export class OrderService {
     }
 
     private postSave(ord: OrderStorage): Observable<any>{
-        return this.http.post('http://localhost:3000/api/order/', ord , this.getHeaders()) // ...using post request
+        return this.http.post('http://35.203.100.140:3000/api/order/', ord , this.getHeaders()) // ...using post request
                 .catch((error:any) => Observable.throw(error.json().error || 'Server error')) //...errors if any; 
     }
 }

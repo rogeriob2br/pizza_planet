@@ -19,7 +19,7 @@ export class AuthService {
     }
 
     login(username: string, password: string): Observable<Login> {
-        return this.http.post('http://localhost:3000/api/login/', {username, password}, this.getHeaders())
+        return this.http.post('http://35.203.100.140:3000/api/login/', {username, password}, this.getHeaders())
             .map(response => response.json() as Login)
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
