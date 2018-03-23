@@ -30,7 +30,7 @@ export class LoginRouter {
                     if(data.password == password){
                         response.status(200)
                         .send({
-                            token: jwt.sign(data, 'PISZZAPLANET', {expiresIn: 1800})
+                            token: jwt.sign(data, 'ITATAKARU', {expiresIn: 1800})
                         });
                     }else{
                         response.status(401).send();
