@@ -38,7 +38,7 @@ class App {
         corsMiddleware.use(function (req, res, next) {
 
             // Website you wish to allow to connect
-            res.setHeader('Access-Control-Allow-Origin', 'http://35.203.100.140:4200');
+            res.setHeader('Access-Control-Allow-Origin', 'http://35.203.100.140:8080');
 
             // Request methods you wish to allow
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

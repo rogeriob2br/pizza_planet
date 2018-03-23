@@ -42,7 +42,7 @@ Runs on 35.203.100.140:3000
 1. `npm install -g @angular/cli`
 1. `npm start`
 
-Runs on 35.203.100.140:4200
+Runs on 35.203.100.140:8080
 
 Default system user/password: admin1/senha
 
