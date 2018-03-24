@@ -18,13 +18,14 @@ export class ProductRouter {
     }
 
     private static getAll(request: Request, response: Response) {
-        ProductModel.find({})
+        ProductModel.find({},"combo categoria name price ingredientes ingrediente")
         .then((data) =>{
             if(!data){
                 response.status(404).send({
                     data: new Error('Não há Produtos cadastrados')
                 });
             }else{
+                console.log(data);
                 response.status(200).send({
                     data
                 })
