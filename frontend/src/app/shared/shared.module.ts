@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AlertMessageComponent } from "app/dashboard/shared/alert/alert-message.compenent";
+import { AlertMessageComponent } from "app/dashboard/shared/alert/alert-message.component";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ModalModule } from "ng2-bootstrap/modal";

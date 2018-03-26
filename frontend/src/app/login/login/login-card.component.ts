@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {AuthService, Login} from "app/dashboard/shared/service/auth.service";
-import {Alert} from "app/dashboard/shared/alert/alert-message.compenent";
+import {Alert} from "app/dashboard/shared/alert/alert-message.component";
 
 @Component({
     templateUrl: './login-card.component.html',
