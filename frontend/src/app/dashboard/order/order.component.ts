@@ -3,7 +3,7 @@ import { ProductService, Product } from '../shared/service/product.services';
 import { ClientService, Client } from '../shared/service/client.services';
 import { Component , ViewChild, ElementRef} from '@angular/core';
 import {Injectable} from '@angular/core';
-import { Alert } from '../shared/alert/alert-message.compenent'
+import { Alert } from '../shared/alert/alert-message.component'
 
 
 @Component({

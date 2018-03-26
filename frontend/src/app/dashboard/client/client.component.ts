@@ -1,6 +1,6 @@
 import {Client, ClientService} from "../shared/service/client.services";
 import {Component , ViewChild, ElementRef} from "@angular/core";
-import { Alert } from '../shared/alert/alert-message.compenent'
+import { Alert } from '../shared/alert/alert-message.component'
 
 @Component({
   templateUrl: 'client.component.html',
