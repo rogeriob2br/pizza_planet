@@ -18,7 +18,7 @@ export class ProductRouter {
     }
 
     private static getAll(request: Request, response: Response) {
-        ProductModel.find({},"combo categoria name price ingredientes ingrediente")
+        ProductModel.find({},"combo categoria name price ingredientes")
         .then((data) =>{
             if(!data){
                 response.status(404).send({
