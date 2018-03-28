@@ -24,9 +24,9 @@ export class ProductRouter {
                 response.status(404).send({
                     data: new Error('Não há Produtos cadastrados')
                 });
-            }else{
-                console.log(data);
+            }else{                
                 let json = JSON.stringify(data);
+                console.log(json);
                 response.status(200).send({
                    json
                 })
