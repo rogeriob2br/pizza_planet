@@ -6,10 +6,8 @@ export const ProductSchema: Schema = new Schema( {
     categoria: String,
     name: String,
     price: Number,
-    ingredientes: [{
-        ingrediente: {
-            Types: String    
-        }
+    ingredientes: [{   
+            Types: String         
     }]
 });
 export default  model('Product', ProductSchema);
