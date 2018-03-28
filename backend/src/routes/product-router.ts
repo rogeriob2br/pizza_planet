@@ -26,8 +26,9 @@ export class ProductRouter {
                 });
             }else{
                 console.log(data);
+                let json = JSON.stringify(data);
                 response.status(200).send({
-                    data
+                   json
                 })
             }
 
