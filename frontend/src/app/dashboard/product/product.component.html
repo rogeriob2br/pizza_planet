@@ -30,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let product of (AllProducts | productFilter:textSearch) | sortBy:ordination">
+                    <tr *ngFor="let product of (AllProducts | productFilter:textSearch | sortBy:ordination)">
                         <!-- <th scope="row">{{product.id}}</th> -->
                         <th scope="row">{{product.Combo}}</th>
                         <td>{{product.name}}</td>
