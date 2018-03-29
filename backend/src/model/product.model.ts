@@ -7,7 +7,7 @@ export const ProductSchema: Schema = new Schema( {
     name: String,
     price: Number,
     ingredientes: [{   
-            Types: String         
+            type: String         
     }]
 });
 export default  model('Product', ProductSchema);
