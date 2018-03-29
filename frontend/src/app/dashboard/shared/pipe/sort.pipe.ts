@@ -4,6 +4,7 @@ import {Pipe, PipeTransform} from "@angular/core";
 export class SortByPipe implements PipeTransform {
 
     transform(array:Array<any>, args:string, args2:string):Array<string> {
+        array = array || [];
         if (array !== undefined) {
             array.sort((a:any, b:any) => {
                 if (args2) {

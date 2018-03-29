@@ -5,6 +5,7 @@ import {Product} from "../service/product.services";
 export class ProductFilterPipe implements PipeTransform {
 
     transform(products:Product[], text:string):Product[] {
+        
         if (products == null || text == null || text.length == 0) {
             return products;
         }
