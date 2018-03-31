@@ -51,6 +51,10 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "prefixInterfaces": false
+    "prefixInterfaces": false,
+    "serve": {
+      "port": 4444,
+      "host": "10.1.2.3"
+    }
   }
 }
